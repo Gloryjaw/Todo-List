@@ -15,7 +15,7 @@ let newId = 6;
 function App() {
   const [todoList, setList] = useState(initialList);
   const [displayState, setDisplayState] = useState('all');
-  const [lightTheme, setLightTheme] = useState(true);
+  const [lightTheme, setLightTheme] = useState(false);
 
   let displayList;
 
