@@ -1,0 +1,89 @@
+.utilitySection{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 7.5em;
+    padding: 1.1em;
+    background-color: var(--list-background);
+    box-shadow: 0 30px 50px 10px rgba(0, 0, 0, 0.09);
+    border-radius: 0 0 6px 6px;
+    transition: background-color 1s ease-in-out;
+}
+.utilitySection>p{
+    color: var(--input-text);
+    font-weight: var(--weight-400);
+    font-size: 0.8rem;
+}
+.utilitySection>button{
+    border: none;
+    background-color: transparent;
+    color: var(--input-text);
+    font-weight: var(--weight-400);
+    font-size: 0.8rem;
+}
+
+.utilitySection>button:hover{
+    color: var(--filter-active-color);
+}
+.filterButtonList{
+    width: 100%;
+    position: absolute;
+    top: 130%;
+    left: 0;
+    display: flex;
+     border-radius: 6px;
+    justify-content: center;
+    background-color: var(--list-background);
+    box-shadow: 0 30px 50px 10px rgba(0, 0, 0, 0.09);
+    transition: background-color 1s ease-in-out;
+}
+.stateButtons{
+    border: none;
+    background-color: transparent;
+    padding: 1.1em 0.6em;
+    font-size: 0.95rem;
+    color: var(--input-text);
+    font-weight: var(--weight-700);
+   
+    
+}
+
+.stateButtons:hover{
+    color: var(--filter-active-color);
+}
+
+.stateButtons.active{
+    color: var(--selected-text-blue);
+}
+
+.instruction{
+    text-align: center;
+    font-weight:var(--weight-700);
+    color: var(--input-text);
+    font-size: 0.85rem;
+}
+
+
+@media (min-width:1000px) {
+
+    .filterButtonList{
+        
+        position: static;
+        box-shadow: none;
+        width: auto;
+    
+
+    }
+
+    .stateButtons{
+        padding: 0 0.6em;
+        font-size: 0.8rem;
+    }
+
+    .utilitySection{
+        margin-bottom: 4.5em;
+        box-shadow: 0 40px 40px 30px rgba(0, 0, 0, 0.09);
+    }
+
+}

@@ -1,0 +1,123 @@
+
+.listSection{
+    background-color: var(--list-background);
+    border-radius: 6px 6px 0 0;
+    margin-top: 1.1em;
+    box-shadow: 0 30px 20px 10px rgba(0, 0, 0, 0.09);
+    transition: background-color 1s ease-in-out;
+}
+
+
+.listItems{
+    display: flex;
+    padding: 1.1em;
+    align-items: center;
+    border-radius: 6px 6px 0 0 ;
+    border-bottom: 1px solid var(--crossed-text);
+    background-color: var(--list-background);
+    transition: background-color 1s ease-in-out;
+
+}
+
+
+.checkbox{
+    border: 1px solid var(--crossed-text);
+    width: 22px;
+    height: 22px;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    position: relative;
+    
+    
+}
+.checkbox:hover{
+    border: 1px solid transparent;
+    background:   linear-gradient(var(--list-background), var(--list-background)) padding-box,
+    var(--gradient-background);
+}
+.checkbox.active{
+    border: none;
+}
+
+.checkbox::before{
+    content: '';
+    width: 100%;
+    height: 100%;
+    display: block;
+    
+    border-radius: 100%;
+    position: absolute;
+    transform: scale(0, 0);
+    transition: transform 500ms ease-in-out;
+    background: var(--gradient-background);
+    
+}
+
+.checkbox.active::before{
+    transform: scale(1, 1);
+}
+
+.itemText{
+    position: relative;
+    align-self: center;
+    margin-left: 0.9em;
+    width: 90%;
+    color: var(--list-text);
+    font-size: 0.8rem;
+    font-weight: var(--weight-700);
+
+}
+
+
+.itemText.active{
+    color: var(--crossed-text);
+    text-decoration: line-through;
+
+
+}
+
+
+
+
+.checkedImage{
+    width: 50%;
+    transform: scale(0, 0);
+    transition: transform 500ms ease-in-out;
+}
+
+.checkedImage.active{
+    transform: scale(1, 1);
+}
+
+.crossButton{
+    border: none;
+    background-color: transparent;
+    margin-left: auto;
+    width: 15px;
+    height: 15px;
+}
+
+.crossImage{
+    width: 100%;
+}
+
+@media (min-width:1000px){
+    .crossButton{
+        display: none;
+    }
+
+    .listItems:hover{
+        cursor: pointer;
+    }
+    .listItems:hover .crossButton{
+        display: block;
+       
+    }
+    .itemText{
+        font-size: 1.1rem;
+        font-weight: var(--weight-400);
+    }
+}

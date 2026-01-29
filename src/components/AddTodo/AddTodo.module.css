@@ -1,0 +1,81 @@
+.headingSection{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.8em;
+}
+
+.headingSection>h1{
+
+    font-size: 1.8em;
+    font-weight: var(--weight-700);
+    color: var(--heading-text);
+    letter-spacing: 0.4em;
+}
+.themeButton{
+    background-color: transparent;
+    border: none;
+}
+.itemForm{
+    background-color: var(--list-background);
+    display: flex;
+    align-items: center;
+    padding: 1em;
+    border-radius: 6px;
+    transition: background-color 1s ease-in-out;
+}
+
+.submitButton{
+    width: 22px;
+    height: 22px;
+    border-radius: 100%;
+    background-color: transparent;
+    border: 1px solid var(--crossed-text);
+    flex-shrink: 0;
+    
+}
+.submitButton:hover{
+    border: 1px solid transparent;
+    background:
+    linear-gradient(var(--list-background), var(--list-background)) padding-box,
+    var(--gradient-background);
+   
+}
+
+
+.itemInput{
+    border: none;
+    background-color:var(--list-background) ;
+    margin-left: 0.9em;
+    caret-color: blue;
+    font-size: 0.9rem;
+    font-weight: var(--weight-400);
+    width: 100%;
+    color: var(--list-text);
+    transition: background-color 1s ease-in-out;
+}
+
+.itemInput:focus{
+    outline: none;
+}
+
+
+.itemInput::placeholder{
+    color: var(--input-text);
+}
+
+@media all and (min-width:1000px){
+    .headingSection>h1{
+        font-size: 2rem;
+    }
+
+    .headingSection{
+        margin-bottom: 3em;
+    }
+
+    .itemInput{
+        font-size: 1.1rem;
+        
+    }
+
+}
