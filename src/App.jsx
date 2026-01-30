@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import {AddTodo, FilterList, TodoList, HeroImage} from './components'
+import {AddTodo, FilterList, TodoList, HeroSection} from './components'
 import './styles/App.css'
 
 const initialList = [
@@ -63,9 +63,9 @@ function App() {
   } 
 
   return (
-    <div className={`background ${lightTheme ? '' : 'dark' }`}>
-      <HeroImage lightTheme={lightTheme} />
-      <div className='dataSection'>
+   
+    <HeroSection lightTheme={lightTheme}>
+      
           <AddTodo
           handleAdd={handleAdd}
           handleThemeChange={handleThemeChange}
@@ -85,9 +85,9 @@ function App() {
           handleDelete={handleDelete}
           displayList={todoList}
           />
-      </div>
-
-    </div>
+    
+    </HeroSection>
+    
   )
 }
 

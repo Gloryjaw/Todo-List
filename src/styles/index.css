@@ -43,15 +43,7 @@ a{
 
 }
 
-.dark{
-  --background-color:hsl(235, 21%, 11%);
-  --list-background:hsl(235, 24%, 19%);
-  --input-text:hsl(235, 16%, 43%);
-  --list-text:hsl(236, 9%, 61%);
-  --crossed-text:hsl(237, 14%, 26%);
-  --filter-active-color:hsl(236, 33%, 92%);
 
-}
 
 button:hover{
   cursor: pointer;

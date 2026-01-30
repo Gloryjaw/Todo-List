@@ -1,0 +1,50 @@
+.heroParent{
+    display: block;
+    width: 100%;
+    max-height: 295px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    overflow: hidden;
+    
+}
+
+.heroImage{
+    width: 100%;
+
+    transition: opacity 1s ease-in-out;
+  
+}
+
+.heroImage.dark{
+    opacity: 0;
+}
+
+.background{
+    background-color: var(--background-color);
+    padding: 4em 1.8em;
+    padding-bottom: 0;
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+    min-height: 100vh;
+    transition: background-color 1s ease-in-out;
+
+}
+
+.dark{
+  --background-color:hsl(235, 21%, 11%);
+  --list-background:hsl(235, 24%, 19%);
+  --input-text:hsl(235, 16%, 43%);
+  --list-text:hsl(236, 9%, 61%);
+  --crossed-text:hsl(237, 14%, 26%);
+  --filter-active-color:hsl(236, 33%, 92%);
+
+}
+
+
+.dataSection{
+    max-width: 550px;
+    margin: auto;
+}

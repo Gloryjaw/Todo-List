@@ -3,13 +3,13 @@ import bgMobileDark from '@/assets/bg-mobile-dark.jpg'
 import bgDesktopLight from '@/assets/bg-desktop-light.jpg'
 import bgDesktopDark from '@/assets/bg-desktop-dark.jpg'
 
-import styles from './HeroImage.module.css'
+import styles from './HeroSection.module.css'
 
-export default function HeroImage({lightTheme}){
+export default function HeroSection({lightTheme, children}){
 
   
   return (
-    <>
+    <div className={`${styles.background} ${lightTheme ? '' : styles.dark}`}>
       <picture className={styles.heroParent}>
 
           <source media="(min-width: 601px)" srcSet={bgDesktopDark}/>
@@ -26,9 +26,13 @@ export default function HeroImage({lightTheme}){
         
           
       </picture>
+      <div className={styles.dataSection}>
+        {children}
+      </div>
+      
 
 
-      </>
+    </div>
 
 
   )
