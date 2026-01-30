@@ -1,11 +1,11 @@
 import styles from './FilterList.module.css'
 
-export default function FilterList({displayStateChange, displayState, displayList, handleDelete}){
+export default function FilterList({displayStateChange, displayState, displayList, onClearCompleted}){
 
 
     return (
         <section>
-            <UtilitySection displayList={displayList} handleDelete={handleDelete}>
+            <UtilitySection displayList={displayList} onClearCompleted={onClearCompleted}>
                 <div className={styles.filterButtonList}>
                     <FilterButton 
                         buttonState={'all'} 
@@ -49,7 +49,7 @@ function FilterButton({children, buttonState, displayState, displayStateChange})
     )
 }
 
-function UtilitySection({children, displayList, handleDelete}){
+function UtilitySection({children, displayList, onClearCompleted}){
     const count = displayList.filter(item => !item.completed).length;
 
 
@@ -57,14 +57,7 @@ function UtilitySection({children, displayList, handleDelete}){
         <div className={styles.utilitySection}>
             <p>{`${count} items left`}</p>
             {children}
-            <button onClick={()=>{
-                for (let i = 0; i<displayList.length; i++){
-                    if(displayList[i].completed){
-                        handleDelete(displayList[i].id)
-                    }
-                    
-                }
-            }}>Clear completed</button>
+            <button onClick={onClearCompleted}>Clear completed</button>
         </div>
     )
 }

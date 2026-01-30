@@ -20,7 +20,7 @@ import {
   useSensors,
 } from '@dnd-kit/core';
 import {
-  arrayMove,
+ 
   SortableContext,
   sortableKeyboardCoordinates,
   verticalListSortingStrategy,
@@ -29,7 +29,7 @@ import {
 
 
 
-export default function TodoList({displayList, handleComplete, handleDelete, dragList}){
+export default function TodoList({displayList, handleComplete, onDelete, onReorder}){
     const sensors = useSensors( 
         useSensor(PointerSensor),
         useSensor(KeyboardSensor, {
@@ -41,12 +41,12 @@ export default function TodoList({displayList, handleComplete, handleDelete, dra
     const todoList = displayList.map((item)=>{    
         
         return (
-            <Items 
+            <TodoItems 
                 key={item.id} 
                 id={item.id}
                 item={item} 
                 handleComplete={handleComplete} 
-                handleDelete={handleDelete}
+                onDelete={onDelete}
 
             />
     )})
@@ -55,13 +55,7 @@ export default function TodoList({displayList, handleComplete, handleDelete, dra
         const {active, over} = event;
         
         if (active.id !== over.id) {
-            dragList((displayList) => {
-
-                const oldIndex = displayList.findIndex(item=>item.id === active.id);
-                const newIndex = displayList.findIndex(item=> item.id === over.id);
-                
-                return arrayMove(displayList, oldIndex, newIndex);
-            });
+            onReorder(active, over)
         }
     }
 
@@ -94,7 +88,7 @@ export default function TodoList({displayList, handleComplete, handleDelete, dra
 
 
 
-function Items({item, handleComplete, handleDelete, id}){
+function TodoItems({item, handleComplete, onDelete, id}){
 
     const completedStyle = item.completed ? styles.active : '';
     const {attributes, listeners, setNodeRef, transform, transition} = useSortable({id: id});
@@ -128,7 +122,7 @@ function Items({item, handleComplete, handleDelete, id}){
 
                     <button 
                         className={styles.crossButton}
-                        onClick={() => handleDelete(item.id)}
+                        onClick={() => onDelete(item.id)}
                     >
                         <img className={styles.crossImage} src={crossImage}/>
                     </button>

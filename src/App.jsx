@@ -1,6 +1,6 @@
 import { useState } from 'react'
+import { arrayMove} from '@dnd-kit/sortable'
 import {AddTodo, FilterList, TodoList, HeroSection} from './components'
-import './styles/App.css'
 
 const initialList = [
   {id:0, task:"Complete online Javascript course", completed:true},
@@ -10,30 +10,26 @@ const initialList = [
   {id:4, task: "Pick up groceries", completed:false},
   {id:5, task: "Complete Todo App on Frontend Mentor", completed:false}
 ]
-let newId = 6;
+
 
 function App() {
   const [todoList, setList] = useState(initialList);
   const [displayState, setDisplayState] = useState('all');
   const [lightTheme, setLightTheme] = useState(false);
 
-  let displayList;
+  const displayList = todoList.filter((item)=>{
+    if(displayState == 'active') return !item.completed;
+    if(displayState == 'completed') return item.completed;
+    return true;
 
-  if(displayState === 'all'){
-    displayList = todoList
-  }
-
-  else if(displayState === 'active'){
-    displayList = todoList.filter(item => !item.completed)
-  }
-
-  else if(displayState === 'completed'){
-    displayList = todoList.filter(item=>item.completed)
-  }
+  })
   
 
   function handleAdd(text){
-    setList([...todoList, {id:newId++, task:text, completed:false}])
+    if(!text.trim()){
+      return;
+    }
+    setList([...todoList, {id:crypto.randomUUID(), task:text, completed:false}])
     
   }
 
@@ -62,6 +58,22 @@ function App() {
     setLightTheme(!lightTheme)
   } 
 
+  function handleReorder(active, over){
+
+    setList((todoList) => {
+
+        const oldIndex = todoList.findIndex(item=>item.id === active.id);
+        const newIndex = todoList.findIndex(item=> item.id === over.id);
+        
+        return arrayMove(todoList, oldIndex, newIndex);
+    });
+
+  }
+
+  function handleClearCompleted(){
+    setList(todoList.filter(item=>!item.completed))
+  }
+
   return (
    
     <HeroSection lightTheme={lightTheme}>
@@ -75,14 +87,14 @@ function App() {
         <TodoList 
           displayList={displayList} 
           handleComplete={handleComplete}
-          handleDelete={handleDelete}
-          dragList={setList}
+          onDelete={handleDelete}
+          onReorder={handleReorder}
 
         />
         <FilterList
           displayStateChange={handleDisplayStateChange}
           displayState={displayState}
-          handleDelete={handleDelete}
+          onClearCompleted={handleClearCompleted}
           displayList={todoList}
           />
     
