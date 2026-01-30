@@ -37,8 +37,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [Frontendmentor link](https://www.frontendmentor.io/solutions/todo-list-with-theme-changing-ms436MmRzx)
+- Live Site URL: [Cloudflare live site](https://todo-list-6xg.pages.dev/)
 
 ## My process
 
