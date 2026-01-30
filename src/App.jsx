@@ -1,6 +1,8 @@
 import { useState } from 'react'
-import { arrayMove} from '@dnd-kit/sortable'
+
+import { useReducer } from 'react';
 import {AddTodo, FilterList, TodoList, HeroSection} from './components'
+import {listReducer} from './reducers'
 
 const initialList = [
   {id:0, task:"Complete online Javascript course", completed:true},
@@ -13,11 +15,12 @@ const initialList = [
 
 
 function App() {
-  const [todoList, setList] = useState(initialList);
+
+  const [list, dispatch] = useReducer(listReducer, initialList);
   const [displayState, setDisplayState] = useState('all');
   const [lightTheme, setLightTheme] = useState(false);
 
-  const displayList = todoList.filter((item)=>{
+  const displayList = list.filter((item)=>{
     if(displayState == 'active') return !item.completed;
     if(displayState == 'completed') return item.completed;
     return true;
@@ -29,24 +32,27 @@ function App() {
     if(!text.trim()){
       return;
     }
-    setList([...todoList, {id:crypto.randomUUID(), task:text, completed:false}])
-    
+    dispatch({
+      type:'added',
+      text: text,
+    })  
   }
 
   function handleComplete(id){
+    dispatch({
+      type:'completed',
+      id:id,
+    })
  
-    setList(todoList.map((item)=>{
-      if(item.id === id){
-        return {...item, completed : !item.completed}
-      }
-      else{
-        return item
-      }
-    }))
+
   }
 
   function handleDelete(id){
-    setList(todoList => todoList.filter((item) =>item.id !== id))
+    dispatch({
+      type:'deleted',
+      id:id
+    })
+  
   }
 
   function handleDisplayStateChange(displayStateValue){
@@ -54,25 +60,27 @@ function App() {
   }
 
   function handleThemeChange(){
-    
     setLightTheme(!lightTheme)
   } 
 
   function handleReorder(active, over){
 
-    setList((todoList) => {
-
-        const oldIndex = todoList.findIndex(item=>item.id === active.id);
-        const newIndex = todoList.findIndex(item=> item.id === over.id);
-        
-        return arrayMove(todoList, oldIndex, newIndex);
-    });
+    dispatch({
+      type:'reordered',
+      activeId:active.id,
+      overId:over.id
+    })
 
   }
 
   function handleClearCompleted(){
-    setList(todoList.filter(item=>!item.completed))
+
+    dispatch({
+      type:'clearCompleted',
+    })
+
   }
+
 
   return (
    
@@ -95,7 +103,7 @@ function App() {
           displayStateChange={handleDisplayStateChange}
           displayState={displayState}
           onClearCompleted={handleClearCompleted}
-          displayList={todoList}
+          displayList={list}
           />
     
     </HeroSection>
