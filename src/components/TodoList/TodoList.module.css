@@ -10,13 +10,17 @@
 
 .listItems{
     display: flex;
-    padding: 1.1em;
+    padding:  0 1.1em;
     align-items: center;
     border-radius: 6px 6px 0 0 ;
     border-bottom: 1px solid var(--crossed-text);
     background-color: var(--list-background);
     transition: background-color 1s ease-in-out;
 
+}
+
+.listItems:hover{
+    cursor: pointer;
 }
 
 
@@ -64,10 +68,12 @@
     position: relative;
     align-self: center;
     margin-left: 0.9em;
-    width: 90%;
+    width: 85%;
     color: var(--list-text);
     font-size: 0.8rem;
     font-weight: var(--weight-700);
+    cursor: grab;
+    padding : 1.1em 0;
 
 }
 
@@ -77,6 +83,10 @@
     text-decoration: line-through;
 
 
+}
+
+.itemText:active{
+    cursor: grabbing;
 }
 
 
@@ -109,9 +119,7 @@
         display: none;
     }
 
-    .listItems:hover{
-        cursor: pointer;
-    }
+
     .listItems:hover .crossButton{
         display: block;
        
@@ -119,8 +127,9 @@
     .itemText{
         font-size: 1.1rem;
         font-weight: var(--weight-400);
+        padding: 1.5em 0;
     }
     .listItems{
-        padding: 1.5em 1.3em ;
+        padding: 0 1.3em ;
     }
 }
